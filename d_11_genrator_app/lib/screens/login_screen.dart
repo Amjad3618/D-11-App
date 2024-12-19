@@ -1,6 +1,6 @@
 import 'package:d_11_genrator_app/Widgets/text_form_feilds.dart';
 import 'package:d_11_genrator_app/Widgets/text_widget.dart';
-import 'package:d_11_genrator_app/screens/home_screen.dart';
+import 'package:d_11_genrator_app/bottom_bar/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,76 +27,78 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const CustomTextWidget(
-                text: "Welcome back",
-                fontSize: 40,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const CustomTextWidget(
-                text: "login with email and password",
-                fontSize: 20,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CustomTextWidget(
+                  text: "Welcome back",
+                  fontSize: 40,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const CustomTextWidget(
+                  text: "login with email and password",
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      CustomTextFormField(
+                          controller: _emailctrl, hintText: "Email"),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      CustomTextFormField(
+                          controller: _passwrodctlr, hintText: "Password")
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomTextFormField(
-                        controller: _emailctrl, hintText: "Email"),
-                    const SizedBox(
-                      height: 15,
+                    const CustomTextWidget(
+                      text: "Dont have on account",
+                      color: Colors.black,
                     ),
-                    CustomTextFormField(
-                        controller: _passwrodctlr, hintText: "Password")
+                    TextButton(
+                        onPressed: () {
+                          Get.to(() => const SignupScreen());
+                        },
+                        child: const Text("SingUp"))
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const CustomTextWidget(
-                    text: "Dont have on account",
-                    color: Colors.black,
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Get.to(() => const SignupScreen());
-                      },
-                      child: const Text("SingUp"))
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(()=>const HomeScreen());
-                      },
-                      child: const CustomTextWidget(
-                        text: "Login",
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w800,
-                      )))
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                    width: 200,
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Get.to(()=>const BottomBar());
+                        },
+                        child: const CustomTextWidget(
+                          text: "Login",
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w800,
+                        )))
+              ],
+            ),
           ),
         ));
   }

@@ -36,109 +36,63 @@ class _AddAnotherCutOffState extends State<AddAnotherCutOff> {
         title: const CustomTextWidget(
           text: "Add Cut off",
           color: Colors.white,
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
         actions: [
-          ElevatedButton(
-            
-            onPressed: (){}, child: const Text("Submit",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),))
+          TextButton(
+            onPressed: (){}, 
+            child: const Text(
+              "Submit",
+              style:  TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600
+              )
+            )
+          )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          child: Column(
-            children: [
-              // Cut-Off Section
-              _buildSection(
-                TimePickerFormField(
-                  controller: _cutOffTimeController,
-                  labelText: 'Select Cut off Time',
-                ),
-                DatePickerFormField(
-                  controller: _cutOffDateController,
-                  labelText: 'Select Cut off Date',
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Turn-On Section
-              _buildSection(
-                TimePickerFormField(
-                  controller: _turnOnTimeController,
-                  labelText: 'Select Turn On Time',
-                ),
-                DatePickerFormField(
-                  controller: _turnOnDateController,
-                  labelText: 'Select Turn On Date',
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Fuel Level Circular Selector
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  border: Border.all(),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: const EdgeInsets.all(20),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const CustomTextWidget(
-                      text: "Fuel Level Selector",
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    const SizedBox(height: 20),
-                    GestureDetector(
-                      onPanUpdate: (details) {
-                        // Interactive sliding by calculating angle
-                        setState(() {
-                          _fuelLevel = (_fuelLevel + details.delta.dy / 300)
-                              .clamp(0.0, 1.0);
-                        });
-                      },
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          SizedBox(
-                            width: 150,
-                            height: 150,
-                            child: CircularProgressIndicator(
-                              value: _fuelLevel,
-                              strokeWidth: 15,
-                              backgroundColor: Colors.grey[300],
-                              color: Colors.green,
-                            ),
-                          ),
-                          Text(
-                            "${(_fuelLevel * 100).toInt()}%",
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
+                    // Cut-Off Section
+                    _buildSection(
+                      TimePickerFormField(
+                        controller: _cutOffTimeController,
+                        labelText: 'Cut off Time',
+                      ),
+                      DatePickerFormField(
+                        controller: _cutOffDateController,
+                        labelText: 'Cut off Date',
                       ),
                     ),
-                    const SizedBox(height: 15),
-                    CustomTextWidget(
-                      text:
-                          "Selected Fuel Level: ${(_fuelLevel * 100).toInt()}%",
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                    const SizedBox(height: 10),
+                    // Turn-On Section
+                    _buildSection(
+                      TimePickerFormField(
+                        controller: _turnOnTimeController,
+                        labelText: 'Turn On Time',
+                      ),
+                      DatePickerFormField(
+                        controller: _turnOnDateController,
+                        labelText: 'Turn On Date',
+                      ),
                     ),
+                    const SizedBox(height: 10),
+                    // Fuel Level Circular Selector
+                    _buildFuelLevelSelector(),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -148,18 +102,76 @@ class _AddAnotherCutOffState extends State<AddAnotherCutOff> {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey[100],
-        border: Border.all(),
-        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(12),
       ),
-      height: 200,
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [child1, child2],
-        ),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [child1, const SizedBox(height: 10), child2],
+      ),
+    );
+  }
+
+  // Fuel Level Selector
+  Widget _buildFuelLevelSelector() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const CustomTextWidget(
+            text: "Fuel Level Selector",
+            color: Colors.black,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          const SizedBox(height: 10),
+          GestureDetector(
+            onPanUpdate: (details) {
+              setState(() {
+                _fuelLevel = (_fuelLevel + details.delta.dy / 300)
+                    .clamp(0.0, 1.0);
+              });
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: CircularProgressIndicator(
+                    value: _fuelLevel,
+                    strokeWidth: 12,
+                    backgroundColor: Colors.grey[300],
+                    color: Colors.green,
+                  ),
+                ),
+                Text(
+                  "${(_fuelLevel * 100).toInt()}%",
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          CustomTextWidget(
+            text: "Selected Fuel Level: ${(_fuelLevel * 100).toInt()}%",
+            color: Colors.black,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ],
       ),
     );
   }
