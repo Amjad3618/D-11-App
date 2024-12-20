@@ -1,10 +1,12 @@
 import 'package:d_11_genrator_app/Utils/colors.dart';
 import 'package:d_11_genrator_app/screens/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -14,19 +16,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         title: 'Genrrartor App',
         theme: ThemeData(
-          scaffoldBackgroundColor: bgcolor,
-          appBarTheme: AppBarTheme(
-            backgroundColor: appbarcolor,
-            titleTextStyle: const TextStyle(color: Colors.white),
-            
-          ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-           style: ElevatedButton.styleFrom(backgroundColor: btncolor,textStyle: const TextStyle(color: Colors.white))
-          )
-        ),
+            scaffoldBackgroundColor: bgcolor,
+            appBarTheme: AppBarTheme(
+              backgroundColor: appbarcolor,
+              titleTextStyle: const TextStyle(color: Colors.white),
+            ),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: btncolor,
+                    textStyle: const TextStyle(color: Colors.white)))),
         home: const LoginScreen());
   }
 }

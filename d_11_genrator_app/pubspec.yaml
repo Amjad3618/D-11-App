@@ -39,6 +39,7 @@ dependencies:
   get:
   curved_bottom_navigation_bar: ^0.0.8
   curved_navigation_bar: ^1.0.6
+  firebase_core: ^3.9.0
 
 dev_dependencies:
   flutter_test:
