@@ -32,6 +32,7 @@ class _AddAnotherCutOffState extends State<AddAnotherCutOff> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: appbarcolor,
         title: const CustomTextWidget(
           text: "Add Cut off",
