@@ -102,13 +102,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 15),
+                        horizontal: 100, vertical: 13),
                     backgroundColor: appbarcolor,
                   ),
                   child: const CustomTextWidget(
                     text: "Sign Up",
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 23,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
