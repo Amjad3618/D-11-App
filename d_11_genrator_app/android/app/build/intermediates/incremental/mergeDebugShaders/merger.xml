@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\LINK TRADERS LT\Desktop\Genrator_D_11\D-11-App\d_11_genrator_app\android\app\src\main\shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\LINK TRADERS LT\Desktop\Genrator_D_11\D-11-App\d_11_genrator_app\android\app\src\debug\shaders"/></dataSet></merger>

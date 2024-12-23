@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">879971399401</string>
+    <string name="google_api_key" translatable="false">AIzaSyC7U-4WlXwer0_-6hbPlmEkVBo-ieY0Y30</string>
+    <string name="google_app_id" translatable="false">1:879971399401:android:4414c4223f6fc354c66278</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC7U-4WlXwer0_-6hbPlmEkVBo-ieY0Y30</string>
+    <string name="google_storage_bucket" translatable="false">appwala-636e0.appspot.com</string>
+    <string name="project_id" translatable="false">appwala-636e0</string>
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">?android:colorBackground</item>
+    </style>
+</resources>

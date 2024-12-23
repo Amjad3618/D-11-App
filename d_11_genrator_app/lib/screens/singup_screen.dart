@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
 import '../Utils/colors.dart';
 import '../Widgets/text_form_feilds.dart';
 import '../Widgets/text_widget.dart';
